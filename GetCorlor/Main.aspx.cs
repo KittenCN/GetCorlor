@@ -13,6 +13,7 @@ namespace GetCorlor
         public int[,,] RGBdata;
         public int[,,] intRGB;
         public int intAllC;
+        public string strOriLocalAdd;
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -28,24 +29,7 @@ namespace GetCorlor
                 try
                 {
                     OriDataFile.PostedFile.SaveAs(SaveLocation);
-                    //Response.Write("The file has been uploaded.");
-                    //ShowMsgHelper.AlertMsg("The file has been uploaded.");
-                    GetColor(SaveLocation);
-                    labAll.Text = "It have " + intAllC + "Pixs";
-                    for(int R = 0; R < 256; R++)
-                    {
-                        for(int G = 0; G < 256; G++)
-                        {
-                            for(int B = 0; B < 256; B++)
-                            {
-                                if(intRGB[R,G,B] != 0)
-                                {
-                                    tbColor.Text = tbColor.Text + "R:" + R + "G:" + G + "B:" + B + "::" + intRGB[R, G, B] + "\r\n";
-                                }
-                            }
-                        }
-                    }
-                    //ShowMsgHelper.Alert_Error("Success.");
+                    strOriLocalAdd = SaveLocation;
                 }
                 catch (Exception ex)
                 {
@@ -86,6 +70,25 @@ namespace GetCorlor
             catch(Exception ex)
             {
 
+            }
+        }
+
+        protected void btn_Analysis_Click(object sender, EventArgs e)
+        {
+            GetColor(strOriLocalAdd);
+            labAll.Text = "It have " + intAllC + "Pixs";
+            for (int R = 0; R < 256; R++)
+            {
+                for (int G = 0; G < 256; G++)
+                {
+                    for (int B = 0; B < 256; B++)
+                    {
+                        if (intRGB[R, G, B] != 0)
+                        {
+                            tbColor.Text = tbColor.Text + "R:" + R + "G:" + G + "B:" + B + "::" + intRGB[R, G, B] + "\r\n";
+                        }
+                    }
+                }
             }
         }
     }
