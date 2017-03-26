@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Drawing;
+using System.IO;
 
 namespace GetCorlor
 {
@@ -30,6 +31,7 @@ namespace GetCorlor
                 {
                     OriDataFile.PostedFile.SaveAs(SaveLocation);
                     strOriLocalAdd = SaveLocation;
+                    imgOri.ImageUrl = ("/showing.aspx?Address=" + SaveLocation);     
                 }
                 catch (Exception ex)
                 {
@@ -41,6 +43,15 @@ namespace GetCorlor
             {
                 //Response.Write("Please select a file to upload.");
                 //ShowMsgHelper.Alert_Error("Please select a file to upload.");
+            }
+        }
+
+        private static byte[] BitmapToBytes(Bitmap img)
+        {
+            using (MemoryStream stream = new MemoryStream())
+            {
+                img.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+                return stream.ToArray();
             }
         }
 

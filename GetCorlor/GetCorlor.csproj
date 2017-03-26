@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Main.aspx" />
+    <Content Include="showing.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -87,6 +88,13 @@
       <DependentUpon>Main.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="showing.aspx.cs">
+      <DependentUpon>showing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="showing.aspx.designer.cs">
+      <DependentUpon>showing.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ShowMsgHelper.cs" />
   </ItemGroup>
   <ItemGroup>
